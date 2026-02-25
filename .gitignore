@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDEs
+.idea/
+.vscode/
+
+# Excel/CSV
+*.csv
