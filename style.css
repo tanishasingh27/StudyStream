@@ -16,24 +16,29 @@ h3, h4 {
     text-align: left;
 }
 
-/* ===== Question Card Containers ===== */
-div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: #f0f4f8 !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 14px !important;
-    padding: 1rem !important;
+/* ===== Force all Streamlit element containers to full width ===== */
+div[data-testid="stElementContainer"],
+div[data-testid="stHorizontalBlock"],
+div[data-testid="column"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
 }
 
-/* ===== Radio / Answer Boxes (Fixed Height) ===== */
+/* ===== Radio / Answer Boxes (Fixed Height, Full Width) ===== */
 div[data-testid="stRadio"] {
     background-color: #eef2f7 !important;
     border-radius: 12px !important;
     padding: 1.5rem !important;
     border: 1px solid #cbd5e1 !important;
-    height: 260px !important;
-    min-height: 260px !important;
-    max-height: 260px !important;
+    height: 220px !important;
+    min-height: 220px !important;
+    max-height: 220px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     overflow-y: auto;
+    margin-bottom: 1rem;
 }
 
 div[data-testid="stRadio"] label,
@@ -70,16 +75,23 @@ div[data-testid="stRadio"] div[role="radiogroup"] {
     color: white !important;
 }
 
-/* ===== Logout Button (Secondary) ===== */
+/* ===== Logout Button (Secondary - same blue) ===== */
 button[kind="secondary"],
 .stButton > button[kind="secondary"] {
-    background-color: #9ca3af !important;
-    box-shadow: 0 2px 4px rgba(156, 163, 175, 0.3) !important;
+    background-color: #1e3a8a !important;
+    color: white !important;
+    box-shadow: 0 4px 6px rgba(30, 58, 138, 0.3) !important;
 }
 button[kind="secondary"]:hover,
 .stButton > button[kind="secondary"]:hover {
-    background-color: #6b7280 !important;
-    box-shadow: 0 4px 6px rgba(107, 114, 128, 0.4) !important;
+    background-color: #1e40af !important;
+    box-shadow: 0 6px 10px rgba(30, 58, 138, 0.45) !important;
+}
+button[kind="secondary"] p,
+button[kind="secondary"] span,
+.stButton > button[kind="secondary"] p,
+.stButton > button[kind="secondary"] span {
+    color: white !important;
 }
 
 /* ===== Alerts / Feedback ===== */

@@ -165,35 +165,38 @@ def main_app():
         questions = st.session_state['questions']
         
         for i, q in enumerate(questions):
-            with st.container(border=True):
-                st.markdown(f"#### Q{i+1}: {q['question']}")
+            st.markdown(f"""
+            <div style="background-color: #f0f4f8; border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                <h4 style="color: #1e3a8a; margin-top: 0;">Q{i+1}: {q['question']}</h4>
+            </div>
+            """, unsafe_allow_html=True)
                 
-                # Unique key for each radio widget
-                radio_key = f"q_radio_{i}"
-                
-                # Options
-                options = q['options']
-                
-                user_choice = st.radio(
-                    "Select an answer:",
-                    options,
-                    key=radio_key,
-                    index=None,
-                    label_visibility="collapsed" # Hide the "Select an answer" label for cleaner UI
-                )
-                
-                check_key = f"check_btn_{i}"
-                
-                if st.button("Check Answer", key=check_key):
-                    if user_choice:
-                        if user_choice == q['correct_answer']:
-                            st.success("✅ Correct! " + q['explanation'])
-                        else:
-                            st.error(f"❌ Incorrect. The correct answer is: **{q['correct_answer']}**\n\n**Reason:** {q['explanation']}")
-                    else:
-                        st.warning("Please select an option first.")
+            # Unique key for each radio widget
+            radio_key = f"q_radio_{i}"
             
-            st.write("") # Add spacing between question cards
+            # Options
+            options = q['options']
+            
+            user_choice = st.radio(
+                f"Q{i+1} Options",
+                options,
+                key=radio_key,
+                index=None,
+                label_visibility="collapsed"
+            )
+            
+            check_key = f"check_btn_{i}"
+            
+            if st.button("Check Answer", key=check_key):
+                if user_choice:
+                    if user_choice == q['correct_answer']:
+                        st.success("✅ Correct! " + q['explanation'])
+                    else:
+                        st.error(f"❌ Incorrect. The correct answer is: **{q['correct_answer']}**\n\n**Reason:** {q['explanation']}")
+                else:
+                    st.warning("Please select an option first.")
+            
+            st.markdown("---")
 
         # Feature E: Take Home Export
         st.subheader("💾 Save for Later")
